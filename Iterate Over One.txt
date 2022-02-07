@@ -1,0 +1,5 @@
+// While there is still stuff to iterate over in both lists
+while (list1 != null) {
+	// Update our list that we are iterating over
+	list1 = list1.next;        
+}
