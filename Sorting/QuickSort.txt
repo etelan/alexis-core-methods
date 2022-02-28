@@ -1,0 +1,40 @@
+import java.util.Arrays;
+
+public class MyClass {
+    public static void main(String args[]) {
+      int[] intArray = {5, 9, 4, 6, 5, 3};
+      quickSort(intArray, 0, intArray.length - 1);
+      System.out.println(Arrays.toString(intArray));
+    }
+    
+    static public void quickSort(int arr[], int begin, int end) {
+        if (begin < end) {
+            int pivot = partition(arr, begin, end);
+    
+            quickSort(arr, begin, pivot-1);
+            quickSort(arr, pivot+1, end);
+        }
+    }
+    
+    static private int partition(int arr[], int begin, int end) {
+        
+        int pivot = arr[end];
+        int item = (begin-1);
+    
+        for (int index = begin; index < end; index++) {
+            if (arr[index] <= pivot) {
+                item++;
+    
+                int swapTemp = arr[item];
+                arr[item] = arr[index];
+                arr[index] = swapTemp;
+            }
+        }
+    
+        int swapTemp = arr[item+1];
+        arr[item+1] = arr[end];
+        arr[end] = swapTemp;
+    
+        return item+1;
+    }
+}
