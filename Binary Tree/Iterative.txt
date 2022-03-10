@@ -1,0 +1,132 @@
+// Iterative
+
+// InOrder Steps
+//    1. Make Stack
+//    2. Set current as Root
+//    3. Push current node, change current -> left until current is NULL
+//    4. Pop from stack, print it's value. current -> right 
+//    5. If current is null and stack is null, break our loop.
+//    6. Go to 3
+
+void inorder(Node root)
+    {
+	// Early Return
+        if (root == null)
+            return;
+ 
+ 	// 1. Make Stack
+        Stack<Node> s = new Stack<Node>();
+
+ 	// 2. Set Current as Root
+        Node curr = root;
+ 
+        // 5. If current is null and stack is null, break our loop
+        while (curr != null || s.size() > 0)
+        {
+ 
+            // 3. Push current node, change current -> left until current is NULL
+            while (curr !=  null)
+            {
+                s.push(curr);
+                curr = curr.left;
+            }
+ 
+            // 4. Pop from stack, print it's value. current -> right 
+            curr = s.pop();
+            System.out.print(curr.data + " ");
+            curr = curr.right;
+        }
+    }
+
+
+// PreOrder Steps
+//	1. Make Stack with root          |    [root]
+//	2. If stack is empty, stop.      |    [false]
+//	3. Pop item from stack and print |    [] root
+//	4. Push right of popped to stack |    [right] root
+//	5. Push left of popped to stack  |    [left, right] root (ensures left subtree is processed first)
+//	6. Go to 2
+
+
+void preorder(Node node)
+    {
+ 
+        // Early Return
+        if (node == null) {
+            return;
+        }
+ 
+        // 1. Make Stack and post root into it
+        Stack<Node> nodeStack = new Stack<Node>();
+        nodeStack.push(root);
+ 	
+	// 2. If stack is empty, stop. 
+        while (nodeStack.empty() == false) {
+ 
+            // 3. Pop item from stack and print
+            Node mynode = nodeStack.peek();
+            System.out.print(mynode.data + " ");
+            nodeStack.pop();
+ 
+            // 4. Push right of popped to stack
+            if (mynode.right != null) {
+                nodeStack.push(mynode.right);
+            }
+	    // 5. Push left of popped to stack 
+            if (mynode.left != null) {
+                nodeStack.push(mynode.left);
+            }
+	// 6. Go to 2
+        }
+    }
+
+
+// PostOrder Two Stack
+//	0. Create two stacks
+// 	1. Root to Stack
+//	2. If it is empty, stop loop
+//	3. Pop from first stack, put in second stack
+//	4. Push left and right from popped node into first stack
+//	5. go to 2
+//	6. Print contents of second stack
+
+
+static void postOrderIterative(node root)
+    {
+        // 0. Create two stacks
+        s1 = new Stack<>();
+        s2 = new Stack<>();
+ 	
+	// Early Return
+        if (root == null)
+            return;
+ 
+        // 1. Root to Stack
+        s1.push(root);
+ 
+        // 2. If it is empty, stop loop
+        while (!s1.isEmpty()) {
+
+            // 3. Pop from first stack, put in second stack
+            node temp = s1.pop();
+            s2.push(temp);
+ 
+            // 4. Push left and right from popped node into first stack
+            if (temp.left != null)
+                s1.push(temp.left);
+            if (temp.right != null)
+                s1.push(temp.right);
+
+	// 5. go to 2
+
+        }
+ 
+        // 6. Print contents of second stack
+        while (!s2.isEmpty()) {
+            node temp = s2.pop();
+            System.out.print(temp.data + " ");
+        }
+    }
+
+
+
