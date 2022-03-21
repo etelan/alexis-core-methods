@@ -1,0 +1,39 @@
+﻿class Solution {
+    public int search(int[] nums, int target) {
+        
+        // Early Return
+        if (nums.length == 1) {
+            return nums[0] == target ? 0 : -1;
+        }
+        
+        int max = nums.length - 1;
+        int min = 0;
+        
+        int index = (int) Math.ceil((min + max) /2f);
+        
+        while (index != (nums.length - 1) || index != 0) {
+                        
+            if (nums[index] == target) {
+                return index;
+            }
+            
+            if (nums[index] < target) {
+                min = index + 1;
+                
+                index = (int) Math.ceil((min + max) / 2f);
+
+
+            } else if ((nums[index] > target) ){
+                max = index - 1;
+                index = (int) Math.ceil((min + max) / 2f);
+            }
+            
+            if (min > max) {
+                break;
+            }
+            
+        }
+        
+        return -1;
+    }
+}
