@@ -1,0 +1,27 @@
+
+
+// 1. Make Stack with Root
+// 2. While its not empty...
+// 3. Poll (return and remove, dont care if null). Print. 
+// 4. If it is not null, add the left and the right to the queue.
+void printLevelOrder(Node root)
+{
+	Queue<Node> queue = new LinkedList<Node>();
+	queue.add(root);
+	
+	while (!queue.isEmpty()) {
+	
+		Node current = queue.poll();
+		System.out.print(current.val + " ");
+
+		/*Enqueue left child */
+		if (current.left != null) {
+			queue.add(current.left);
+		}
+
+		/*Enqueue right child */
+		if (current.right != null) {
+			queue.add(current.right);
+		}
+	}
+}
